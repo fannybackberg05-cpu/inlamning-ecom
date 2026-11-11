@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syne:wght@400..800&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -6,6 +7,7 @@ html,body {
   background-color: beige;
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Outfit', sans-serif;
 }
 .hero img {
   display: block;
@@ -31,15 +33,35 @@ html,body {
   text-decoration: none;
   color: black;
 }
-h1 {
+.hero h1 {
   text-align: center;
   font-size: 3rem;
   margin-top: 20px;
 } 
+.hero p{
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+.btn {
+   display: block;
+  width: fit-content;
+  margin: 20px auto;
+  background-color: #183d30;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
 .product-preview {
-  padding: 60px 5%;
+  padding: 20px 5%;
   text-align: center;
+  border-bottom: 2px solid #95ca94;
 }
 
 .preview-container {
@@ -84,7 +106,50 @@ h1 {
   background-color: #32624d;
 }
 
+.About {
+ padding: 60px 5%;
+  text-align: center;
+  border-bottom: 2px solid #95ca94;
+  
+}
 
+.questions {
+  padding: 60px 5%;
+  text-align: center;
+}
+
+/* Plustecken */
+
+.faq-container summary::after {
+  content: "+";
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+/* Minustecken när frågan öppnas */
+
+.faq-container details[open] summary::after {
+  content: "−";
+}
+.faq-container details p {
+  margin-top: 20px;
+  font-size: 17px;
+  color:#f407a9
+}
+
+.faq-container {
+  color: orange;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.faq-container summary {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 15px;
+  border-bottom: 1px solid #a90909;
+}
 
 footer {
   background-color: #455f40;
@@ -145,4 +210,25 @@ footer {
 .social h3 {
   text-decoration: underline;
   color: beige;
+}
+
+@media (max-width: 600px) {
+
+.nav {
+    display: none;
+  }
+
+.mobil-menu {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.mobil-menu img {
+  width: 30px;
+  height: 30px;
+}
+
 }
