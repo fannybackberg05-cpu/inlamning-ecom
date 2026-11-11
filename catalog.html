@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkter</title>
+    <script src="catalog.js" defer></script>
+    <link rel="stylesheet" href="catalog.css">
+</head>
+<body>
+    <header class="header">
+        <nav id="nav">
+            <ul>
+                <li class="nav-link"><a href="#">Hem</a></li>
+                <li class="nav-link"><a href="#">Produkter</a></li>
+                <li class="nav-link"><a href="#">Om oss</a></li>
+                <li class="nav-link"><a href="#">Kontakta oss</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="info-container">
+            <h1>Produkter</h1>
+            <p>Vi har en blandning av produkter, från smink till motorcyklar. Sortera efter kategori eller sök på det du letar efter.</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Sök produkter...">
+            <div id="sort-container">
+                <select id="sort-select">
+                    <option value="">Ingen sortering</option>
+                    <option value="price-asc">Lägsta pris</option>
+                    <option value="price-desc">Högsta pris</option>
+                    <option value="rating-desc">Kunders favoriter</option>
+                </select>
+            </div>
+            <div id="tags-container"></div>
+        </div>
+
+        <div class="products-container"></div>
+    </main>
+
+<footer class="footer">
+    <p>&copy; 2026 Katalog. Alla rättigheter förbehållna.</p>
+</footer>
+
+</body>
+</html>
