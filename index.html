@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>VENDO</title>
+
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- NAVIGATION -->
+    <header>
+      <nav class="nav">
+          <li><a href="index.html">Hem</a></li>
+          <li><a href="catalog.html">Produkter</a></li>
+          <li><a href="#about">Om oss</a></li>
+          <li><a href="#contact">Kontakta oss</a></li>
+      </nav>
+
+      <!-- MOBILMENY -->
+      <button class="mobil-menu" type="button" aria-label="Öppna menyn">
+        <img src="Images/hamburger.png" alt="" />
+      </button>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <img src="Images/hero.png" alt="Produkter från vår webbshop" />
+
+        <h1>Välkommen till vår webbplats!</h1>
+
+        <p>Utforska våra produkter och tjänster.</p>
+
+        <a href="catalog.html" class="btn">Se våra produkter</a>
+      </section>
+
+      <!-- TRE PRODUKTER FRÅN API -->
+      <section class="product-preview">
+        <h2>Utvalda produkter</h2>
+
+        <div class="preview-container" id="preview">
+          <!-- JavaScript skapar produkterna här -->
+        </div>
+      </section>
+
+      <!-- OM OSS -->
+      <section class="About" id="about">
+        <h2>Om oss</h2>
+
+        <p>
+          Vi är ett företag som specialiserar oss på att erbjuda högkvalitativa
+          produkter och tjänster till våra kunder. Vårt mål är att ge dig den
+          bästa upplevelsen när du handlar hos oss.
+        </p>
+      </section>
+
+      <!-- VANLIGA FRÅGOR -->
+      <section class="questions" id="questions">
+        <h2>Vanliga frågor</h2>
+
+        <p>
+          Här hittar du svar på de vanligaste frågorna om våra produkter och
+          tjänster.
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+      <div class="social">
+
+        <nav class="nav-bottom">
+        <h3>Snabblänkar</h3>
+        <li><a href="index.html">Hem</a></li>
+          <li><a href="catalog.html">Produkter</a></li>
+          <li><a href="#about">Om oss</a></li>
+          <li><a href="#contact">Kontakta oss</a></li>
+      </nav>
+
+      <div class="social-media">
+        <h3>Följ oss!</h3>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="Images/instagram.png" alt="Instagram"/>
+        <span>Vår Instagram</span>
+      </a>
+          
+          <a href="https://facebook.se/" target="_blank">
+            <img src="Images/facebook.png" alt="Facebook"
+          />
+        <span>Vår Facebook</span>
+      </a>
+          
+        </div>
+        </div>
+        <div class="arrow">
+          <a href="index.html" class="pil">
+            <img src="Images/up-arrow.png" alt="Tillbaka till toppen" />
+          </a>
+        </div>
+      <p>&copy; 2026 Vårt Företag. Alla rättigheter reserverade.</p>
+    </footer>
+  </body>
+</html>

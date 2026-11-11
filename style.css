@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+html,body {
+  margin: 0;
+  background-color: beige;
+  width: 100%;
+  overflow-x: hidden;
+}
+.hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mobil-menu {
+  display: none;
+}
+
+.nav {
+  position: absolute;
+  background-color: red;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  gap: 20px;
+  padding: 10px;
+}
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 20px;
+} 
+
+.product-preview {
+  padding: 60px 5%;
+  text-align: center;
+}
+
+.preview-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+}
+
+.product-card h3 {
+  margin: 15px 0;
+}
+
+.product-card p {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-btn {
+  display: inline-block;
+  background-color: #183d30;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.product-btn:hover {
+  background-color: #32624d;
+}
+
+
+
+footer {
+  background-color: #455f40;
+}
+.footer p {
+  color: beige;
+  text-align: center;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 20px;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+}
+.social-media img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.arrow img {
+  width: 40px;
+  height: 40px;
+}
+.arrow {
+  display: grid;
+  justify-content: center;
+  padding-right: 50px;
+}
+.nav-bottom {
+  display: flex;
+  flex-direction: column;
+}
+.social-media a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.social-media span {
+  color: beige;
+  padding: 15px;
+  
+}
+
+.nav-bottom a {
+  color: beige;
+  margin: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.social h3 {
+  text-decoration: underline;
+  color: beige;
+}
