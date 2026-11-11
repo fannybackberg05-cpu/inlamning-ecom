@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syne:wght@400..800&display=swap');
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 html,body {
   margin: 0;
@@ -21,7 +23,7 @@ html,body {
 
 .nav {
   position: absolute;
-  background-color: red;
+  background-color: #183d30;
   top: 0;
   width: 100%;
   display: flex;
@@ -31,7 +33,7 @@ html,body {
 }
 .nav a {
   text-decoration: none;
-  color: black;
+  color: beige;
 }
 .hero h1 {
   text-align: center;
@@ -118,19 +120,7 @@ html,body {
   text-align: center;
 }
 
-/* Plustecken */
 
-.faq-container summary::after {
-  content: "+";
-  font-size: 25px;
-  flex-shrink: 0;
-}
-
-/* Minustecken när frågan öppnas */
-
-.faq-container details[open] summary::after {
-  content: "−";
-}
 .faq-container details p {
   margin-top: 20px;
   font-size: 17px;
@@ -157,6 +147,7 @@ footer {
 .footer p {
   color: beige;
   text-align: center;
+  padding: 20px;
 }
 
 .social {
@@ -171,6 +162,7 @@ footer {
   display: flex;
   flex-direction: column;
 }
+
 .social-media img {
   width: 40px;
   height: 40px;
@@ -189,6 +181,7 @@ footer {
 .nav-bottom {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 .social-media a {
   display: flex;
