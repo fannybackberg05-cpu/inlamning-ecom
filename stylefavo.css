@@ -1,0 +1,26 @@
+.h1 {
+    text-align: center;
+}
+.favorite-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.title-and-remove {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid black;
+    max-width: 300px;
+    padding: 5px;
+    border-radius: 5%;
+
+}
