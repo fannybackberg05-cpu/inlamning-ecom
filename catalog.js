@@ -32,7 +32,10 @@ function showProducts(productsToShow){
         productsContainer.innerHTML = '<p>Inga produkter hittades.</p>';
         return;
     }
+
+    const favorites = JSON.parse(localStorage.getItem("myFavorites")) || []; // Har skrivit här(Fadi)
     productsToShow.forEach(product => {
+        const isFavorite = favorites.includes(product.id); // Har skrivit här(Fadi)
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
         productCard.innerHTML = `
@@ -41,10 +44,36 @@ function showProducts(productsToShow){
             <span id="productPrice" weight="bold">${product.price} $</span>
             <span id="productRating" weight="light">${product.rating} stars</span>
             <button id="read-more-btn">Läs mer</button>
-        `;
+            <button class="fav-btn">
+                ${isFavorite ? '❤️ Sparad' : '🤍 Spara favorit'}
+            </button>
+        `;// Har skrivit härifrån(Fadi) 
+        const favBtn = productCard.querySelector('.fav-btn');
+        favBtn.addEventListener('click', () => {
+            toggleFavorite(product.id, favBtn);
+        });
+        // tills här
         productsContainer.appendChild(productCard);
     });
 }
+
+function toggleFavorite(productId, btnElement) {
+    let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
+
+    if (favorites.includes(productId)) {
+        // Ta bort om den redan finns
+        favorites = favorites.filter(id => id !== productId);
+        btnElement.textContent = '🤍 Spara favorit';
+        btnElement.classList.remove('saved');
+    } else {
+        // Lägg till om den inte finns
+        favorites.push(productId);
+        btnElement.textContent = '❤️ Sparad';
+        btnElement.classList.add('saved');
+    }
+
+    localStorage.setItem("myFavorites", JSON.stringify(favorites));
+} // localstorage funktionen, kan toggla på knapparna så kan du lägga till eller ta bort via knapp tryck
 
 function showCategory(products) {
     const uniqueCategories = [...new Set(products.map(product => product.category))];
