@@ -1,13 +1,31 @@
-body {
-    font-family:Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color:white;
-    color: black;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
+html,body {
+  margin: 0;
+  background-color: beige;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+#nav {
+  position: absolute;
+  background-color: #183d30;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  gap: 20px;
+  padding: 10px;
+}
+#nav a {
+  text-decoration: none;
+  color: beige;
+}
 .header {
-    background-color: red;
+    
     color: white;
     text-align: center;
     display:flex;
@@ -16,13 +34,6 @@ body {
     padding: 1.5rem;
     position:relative;
     max-height: 100px;
-}
-
-#nav {
-    display:flex;
-    justify-content: space-between;
-    align-items:center;
-    width: 100%;
 }
 
 .products-container {
