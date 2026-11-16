@@ -1,9 +1,40 @@
 .h1 {
     text-align: center;
 }
+.no-favorites {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Ändrad från align-self – hindrar knappen från att sträckas ut */
+    justify-content: center;
+    min-height: 15vh;         /* Ger utrymme så innehållet hamnar mitt på skärmen i höjdled */
+    text-align: center;
+}
+
+.empty-message {
+    max-width: 80vw;
+    margin: 0 auto;
+    font-size: clamp(30px, 6vw, 60px); /* Minst 28px på mobil, skalas upp till max 60px på dator */;
+}
+
+.back-to-catalog-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #000; /* Ändra till er temafärg */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.back-to-catalog-btn:hover {
+    opacity: 0.8;
+}
+
 .favorite-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     padding: 20px;
 
@@ -12,15 +43,100 @@
 .title-and-remove {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
     width: 100%;
+}
+
+.h2 {
+    font-size: clamp(18px, 2vw, 21px); /* Anpassar textstorleken mjukt */
+    margin: 0;
+    text-align: center;
+    flex: 1;
+}
+
+.close-btn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #e63946;
+    color: #ffffff;            
+    border: none;              
+    border-radius: 35%;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex; /* Centrerar krysset exakt i mitten av knappen */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.close-btn:hover {
+    background-color: #c1121f;
+    transform: scale(1.08);    /* Liten zoom-effekt vid hover */
 }
 .item {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 3px solid black;
-    max-width: 300px;
-    padding: 5px;
-    border-radius: 5%;
+    padding: 15px;
+    border-radius: 16px;
+}
 
+.product-img {
+    width: 100%;
+    height: 180px;             /* Samma höjd för alla bilder */
+    object-fit: contain;       /* Visar hela produkten utan att den klipps eller dras ut */
+    margin: 10px 0;
+}
+
+.product-desc {
+    font-size: 14px;
+    color: #444;
+    text-align: center;
+    margin: 0 0 15px 0;
+}
+.card-footer {
+    margin-top: auto;          /* Nyckeln: trycker ner pris, kategori och knapp till botten */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.product-category {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777;
+    margin: 0;
+}
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+}
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;             /* Lägger ikonen och texten bredvid varandra */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;                  /* Avstånd mellan ikonen och texten */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
 }
