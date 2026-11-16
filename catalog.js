@@ -73,6 +73,7 @@ fetch('https://dummyjson.com/products?limit=0')
         // tills här
         productsContainer.appendChild(productCard);
     });
+    });   //la till saknades erika
 
 function createMainCategoryButtons() {
     mainCategoriesBox.innerHTML = `
@@ -116,7 +117,7 @@ function showCategory(products) {
         createSubCategoryButtons(cat);
     }
     updateProductList();
-}
+}}   //saknades
 
 function createSubCategoryButtons(mainName) {
     const subList = categories[mainName];
