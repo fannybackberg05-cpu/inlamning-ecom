@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produkter</title>
-    <script src="catalog.js" defer></script>
+    <title>Products</title>
     <link rel="stylesheet" href="catalog.css">
+    <script src="catalog.js" defer></script>
 </head>
 <body>
-    <!-- Ändrade menyn med länkar erika -->
     <header class="header">
         <nav id="nav">
         <li><a href="index.html">Hem</a></li>
@@ -18,33 +17,30 @@
         <li><a href="favo.html">❤︎ Dina favoriter</a></li>
         <li><a href="cart.html">🛒 Kassa</a></li>
       </nav>
-
-       <!-- MOBILMENY -->
       <button class="mobil-menu" type="button" aria-label="Öppna menyn">
         <img src="Images/hamburger.png" alt="" />
       </button>
     </header>
-    </header>
+
     <main>
         <div class="info-container">
-            <h1>Produkter</h1>
-            <p>Vi har en blandning av produkter, från smink till motorcyklar. Sortera efter kategori eller sök på det du letar efter.</p>
+            <h1>Products</h1>
+            <p>We offer a wide variety of products. Filter by category or search for what you are looking for.</p>
         </div>
-
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Sök produkter...">
-            <div id="sort-container">
+            <div class="filter-controls">
+                <input type="text" id="search-input" placeholder="Search products...">
                 <select id="sort-select">
-                    <option value="">Ingen sortering</option>
-                    <option value="price-asc">Lägsta pris</option>
-                    <option value="price-desc">Högsta pris</option>
-                    <option value="rating-desc">Kunders favoriter</option>
+                    <option value="">Sort by</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="rating-desc">Customer Favorites</option>
                 </select>
             </div>
-            <div id="tags-container"></div>
+            <div id="main-categories" class="category-menu"></div>
+            <div id="sub-categories" class="category-menu sub-menu"></div>
         </div>
-
-        <div class="products-container"></div>
+        <div id="products-container" class="products-container"></div>
     </main>
 <footer class="footer" id="contact">
       <div class="social">
@@ -65,18 +61,92 @@
             <span>Vår Instagram</span>
           </a>
 
-          <a href="https://facebook.se/" target="_blank">
-            <img src="Images/facebook.png" alt="Facebook" />
-            <span>Vår Facebook</span>
-          </a>
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button id="close-modal-btn" class="close-btn">X</button>
+            <div id="modal-view-section">
+                <div class="modal-grid">
+                    <div class="modal-image">
+                        <img id="modal-img" src="" alt="">
+                    </div>
+                    
+                    <div class="modal-info">
+                        <p id="modal-category" class="category-label"></p>
+                        <h2 id="modal-title"></h2>
+                        <p id="modal-price" class="price-label"></p>
+                        <p id="modal-description"></p>
+                        
+                        <ul id="modal-specs" class="specs-list"></ul>
+
+                        <div id="modal-sizes" class="option-group">
+                            <p><strong>Select Size:</strong></p>
+                            <button type="button" class="size-btn">S</button>
+                            <button type="button" class="size-btn active">M</button>
+                            <button type="button" class="size-btn">L</button>
+                            <button type="button" class="size-btn">XL</button>
+                        </div>
+
+                        <div class="option-group">
+                            <p><strong>Quantity:</strong></p>
+                            <button type="button" id="minus-btn" class="qty-btn">-</button>
+                            <span id="qty-number" class="qty-number">1</span>
+                            <button type="button" id="plus-btn" class="qty-btn">+</button>
+                        </div>
+
+                        <button id="modal-cart-btn" class="primary-btn">Add to Cart</button>
+
+                        <div id="modal-admin-section" style="margin-top: 15px; display: flex; gap: 10px; border-top: 1px solid #eee; padding-top: 15px;">
+                            <button class="secondary-btn" style="flex: 1; background: #f0f0f0;" onclick="openEditMode()">Redigera produkt</button>
+                            <button class="secondary-btn" style="flex: 1; background: #ffcccc; color: #a00;" onclick="deleteCurrentProduct()">Ta bort produkt</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="edit-section" style="display: none; margin-top: 10px;">
+                <h3 id="form-heading" style="margin-bottom: 15px; font-size: 1.4rem; color: #2c3e29;">Redigera produkt</h3>
+                <div class="edit-form-group">
+                    <label>Titel:</label>
+                    <input type="text" id="edit-title">
+                </div>
+                <div class="edit-form-group">
+                    <label>Pris ($):</label>
+                    <input type="number" id="edit-price">
+                </div>
+                <div class="edit-form-group">
+                    <label>Beskrivning:</label>
+                    <textarea id="edit-description" rows="3"></textarea>
+                </div>
+                <div class="edit-form-group">
+                    <label>Bild-URL:</label>
+                    <input type="text" id="edit-thumbnail">
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button id="save-edit-btn" class="primary-btn" style="margin: 0; flex: 1;">Spara ändringar</button>
+                    <button id="cancel-edit-btn" class="secondary-btn" style="flex: 1;">Avbryt</button>
+                </div>
+            </div>
+
         </div>
-      </div>
-      <div class="arrow">
-        <a href="index.html" class="pil">
-          <img src="Images/up-arrow.png" alt="Tillbaka till toppen" />
-        </a>
-      </div>
-      <p>&copy; 2026 Vårt Företag. Alla rättigheter reserverade.</p>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="footer-inner">
+            <div class="social">
+                <div class="nav-bottom">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Products</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+                <div class="social-media">
+                    <h3>Follow Us!</h3>
+                    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+                    <a href="https://facebook.se/" target="_blank">Facebook</a>
+                </div>
+            </div>
+            <p class="footer-copy">&copy; 2026 Our Company. All rights reserved.</p>
+        </div>
     </footer>
 
 </body>
