@@ -67,17 +67,25 @@ html,body {
 }
 
 .preview-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+ 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 25px;
   margin-top: 30px;
 }
 
 .product-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
+  border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 10px;
+    border: 1px solid, grey;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color:white
 }
 
 .product-card img {
@@ -209,8 +217,11 @@ footer {
 
 .nav {
     display: none;
+    
   }
-
+.nav.open {
+    display: block;
+  }
 .mobil-menu {
   display: block;
   position: absolute;
@@ -223,5 +234,5 @@ footer {
   width: 30px;
   height: 30px;
 }
-
+ 
 }

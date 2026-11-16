@@ -1,4 +1,5 @@
 /* //ändrade lite layout och färger på favoriter sidan erika */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syne:wght@400..800&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,6 +11,9 @@ html,body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Outfit', sans-serif;
+}
+.mobil-menu {
+  display: none;
 }
 .nav {
   position: absolute;
@@ -166,4 +170,91 @@ html,body {
 .add-to-cart-btn:hover {
     background-color: #333333;
     transform: translateY(-2px);
+}
+footer {
+  background-color: #455f40;
+}
+.footer p {
+  color: beige;
+  text-align: center;
+  padding: 20px;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 20px;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-media img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.arrow img {
+  width: 40px;
+  height: 40px;
+}
+.arrow {
+  display: grid;
+  justify-content: center;
+  padding-right: 50px;
+}
+.nav-bottom {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.social-media a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.social-media span {
+  color: beige;
+  padding: 15px;
+  
+}
+
+.nav-bottom a {
+  color: beige;
+  margin: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.social h3 {
+  text-decoration: underline;
+  color: beige;
+}
+
+@media (max-width: 600px) {
+
+.nav {
+    display: none;
+    
+  }
+.nav.open {
+    display: block;
+  }
+.mobil-menu {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.mobil-menu img {
+  width: 30px;
+  height: 30px;
+}
+ 
 }
