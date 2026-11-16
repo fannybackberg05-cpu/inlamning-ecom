@@ -117,10 +117,19 @@ html,body {
 }
 
 .About {
- padding: 60px 5%;
-  text-align: center;
-  border-bottom: 2px solid #95ca94;
+  padding: 60px 20px;
   
+}
+.About h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.About p {
+  max-width: 650px;
+  margin: 0 auto 15px;
+  line-height: 1.7;
 }
 
 .questions {
