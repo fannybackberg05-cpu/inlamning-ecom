@@ -1,3 +1,4 @@
+import { getCart } from "./addtocartfunktioner.js";
 // navigering mobil
 const menuBtn = document.querySelector(".mobil-menu");
 const nav = document.querySelector(".nav");
@@ -15,3 +16,8 @@ menuBtn.addEventListener("click", () => {
   );
 
 });
+
+// Hämtar allt som har lagts till från andra sidor och visar det i kassans konsol
+const currentCart = getCart();
+console.log("Produkter som har kommit fram till kassan:", currentCart);
+console.table(currentCart);
