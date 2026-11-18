@@ -46,6 +46,32 @@ fetch('https://dummyjson.com/products?limit=0')
         allProducts = data.products;
         createMainCategoryButtons();
         updateProductList();
+    if (!productsToShow || productsToShow.length === 0) {
+        productsContainer.innerHTML = '<p>Inga produkter hittades.</p>';
+        return;
+    }
+
+    const favorites = JSON.parse(localStorage.getItem("myFavorites")) || []; // Har skrivit här(Fadi)
+    productsToShow.forEach(product => {
+        const isFavorite = favorites.includes(product.id); // Har skrivit här(Fadi)
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+            <img id="productThumbnail" src="${product.thumbnail}" alt="${product.title}">
+            <h2 id="productTitle">${product.title}</h2>
+            <span id="productPrice" weight="bold">${product.price} $</span>
+            <span id="productRating" weight="light">${product.rating} stars</span>
+            <button id="read-more-btn">Läs mer</button>
+            <button class="fav-btn">
+                ${isFavorite ? '❤️ Sparad' : '🤍 Spara favorit'}
+            </button>
+        `;// Har skrivit härifrån(Fadi) 
+        const favBtn = productCard.querySelector('.fav-btn');
+        favBtn.addEventListener('click', () => {
+            toggleFavorite(product.id, favBtn);
+        });
+        // tills här
+        productsContainer.appendChild(productCard);
     });
    
 function toggleFavorite(productId, btnElement) {
@@ -74,6 +100,28 @@ function selectMainCategory(cat) {
     selectedMainCategory = cat;
     selectedSubCategory = "all";
     createMainCategoryButtons();
+function toggleFavorite(productId, btnElement) {
+    let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
+
+    if (favorites.includes(productId)) {
+        // Ta bort om den redan finns
+        favorites = favorites.filter(id => id !== productId);
+        btnElement.textContent = '🤍 Spara favorit';
+        btnElement.classList.remove('saved');
+    } else {
+        // Lägg till om den inte finns
+        favorites.push(productId);
+        btnElement.textContent = '❤️ Sparad';
+        btnElement.classList.add('saved');
+    }
+
+    localStorage.setItem("myFavorites", JSON.stringify(favorites));
+} // localstorage funktionen, kan toggla på knapparna så kan du lägga till eller ta bort via knapp tryck
+
+function showCategory(products) {
+    const uniqueCategories = [...new Set(products.map(product => product.category))];
+    
+    let categoriesHTML = '<button class="tag-btn active" onclick="selectCategory(\'\')">Alla</button>';
     
     if (cat === "all" || !categories[cat] || categories[cat].length <= 1) {
         subCategoriesBox.style.display = "none";
@@ -284,8 +332,24 @@ plusBtn.onclick = () => {
         qtyNumber.textContent = currentQuantity;
     }
 };
-
 modalCartBtn.onclick = () => {
     alert(`Added ${currentQuantity}x ${currentProduct.title} to cart!`);
     modal.style.display = "none";
 };
+  
+const menuBtn = document.querySelector(".mobil-menu");
+const nav = document.querySelector("#nav");
+
+menuBtn.addEventListener("click", () => {
+
+  nav.classList.toggle("open");
+
+  const isOpen = nav.classList.contains("open");
+
+  menuBtn.setAttribute("aria-expanded", isOpen);
+  menuBtn.setAttribute(
+    "aria-label",
+    isOpen ? "Stäng menyn" : "Öppna menyn"
+  );
+
+});

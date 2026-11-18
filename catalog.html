@@ -8,14 +8,18 @@
     <script src="catalog.js" defer></script>
 </head>
 <body>
-
-    <header>
-        <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="catalog.html">Products</a>
-            <a href="index.html#about">About Us</a>
-            <a href="index.html#contact">Contact Us</a>
-        </nav>
+    <header class="header">
+        <nav id="nav">
+        <li><a href="index.html">Hem</a></li>
+        <li><a href="catalog.html">Produkter</a></li>
+        <li><a href="index.html#about">Om oss</a></li>
+        <li><a href="index.html#contact">Kontakta oss</a></li>
+        <li><a href="favo.html">❤︎ Dina favoriter</a></li>
+        <li><a href="cart.html">🛒 Kassa</a></li>
+      </nav>
+      <button class="mobil-menu" type="button" aria-label="Öppna menyn">
+        <img src="Images/hamburger.png" alt="" />
+      </button>
     </header>
 
     <main>
@@ -38,6 +42,24 @@
         </div>
         <div id="products-container" class="products-container"></div>
     </main>
+<footer class="footer" id="contact">
+      <div class="social">
+        <nav class="nav-bottom">
+          <h3>Snabblänkar</h3>
+          <li><a href="index.html">Hem</a></li>
+          <li><a href="catalog.html">Produkter</a></li>
+          <li><a href="index.html#about">Om oss</a></li>
+          <li><a href="index.html#contact">Kontakta oss</a></li>
+          <li><a href="favo.html">❤︎ Dina favoriter</a></li>
+          <li><a href="cart.html">🛒 Kassa</a></li>
+        </nav>
+
+        <div class="social-media">
+          <h3>Följ oss!</h3>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="Images/instagram.png" alt="Instagram" />
+            <span>Vår Instagram</span>
+          </a>
 
     <div id="product-modal" class="modal-overlay">
         <div class="modal-box">
