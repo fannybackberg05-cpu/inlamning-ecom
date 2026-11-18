@@ -164,6 +164,7 @@ function updateProductList() {
 }
 
 function showProducts(productsList) {
+  const favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
   let html = `
         <div class="product-card add-new-card" onclick="openCreateMode()" style="display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px dashed #ccc; background: #fafafa;">
             <div style="text-align: center;">
@@ -174,14 +175,18 @@ function showProducts(productsList) {
     `;
   //knapp för att spara favorit tillfavvosida erika
   html += productsList
-    .map(
-      (product) => `
+    .map((product) => {
+      // Kontrollera om produkten redan är en favorit
+      const isFavorite = favorites.includes(product.id);
+      const activeClass = isFavorite ? "active" : "";
+
+      return `
         <div class="product-card" id="product-${product.id}">
             <div>
                 <div class="image-box">
- <button class="heart-btn"
-    onclick="toggleFavorite(${product.id}, this)"> ♥
-</button>
+                    <button class="heart-btn ${activeClass}"
+                        onclick="toggleFavorite(${product.id}, this)"> ♥
+                    </button>
                     <img src="${product.thumbnail}" alt="${product.title}">
                 </div>
                 <h2>${product.title}</h2>
@@ -195,8 +200,8 @@ function showProducts(productsList) {
                 <button class="primary-btn" onclick="alert('Added ${product.title} to cart!')">Add to cart</button>
             </div>
         </div>
-    `,
-    )
+      `;
+    })
     .join("");
 
   productsContainer.innerHTML = html;
