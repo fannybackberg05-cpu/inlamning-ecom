@@ -47,36 +47,26 @@ const categories = {
 };
 
 fetch('https://dummyjson.com/products?limit=0')
-    .then(res => res.json())
-    .then(data => {
-        allProducts = data.products;
-        createMainCategoryButtons();
-        updateProductList();
-    if (!showProducts || showProducts.length === 0) {
-        productsContainer.innerHTML = '<p>Inga produkter hittades.</p>';
-        return;
-    }
+  .then(res => res.json())
+  .then(data => {
+    allProducts = data.products;
+    createMainCategoryButtons();
+    updateProductList();
+  });
 
-    const favorites = JSON.parse(localStorage.getItem("myFavorites")) || []; // Har skrivit här(Fadi)
-    showProducts.forEach(product => {
-        const isFavorite = favorites.includes(product.id); // Har skrivit här(Fadi)
-        const productCard = document.createElement('div');
-        productCard.classList.add('product-card');
-        productCard.innerHTML = `
-            <img id="productThumbnail" src="${product.thumbnail}" alt="${product.title}">
-            <h2 id="productTitle">${product.title}</h2>
-            <span id="productPrice" weight="bold">${product.price} $</span>
-            <span id="productRating" weight="light">${product.rating} stars</span>
-            <button id="read-more-btn">Läs mer</button>
-        `; // Har skrivit härifrån(Fadi)
-      const favBtn = productCard.querySelector(".fav-btn");
-      favBtn.addEventListener("click", () => {
-        toggleFavorite(product.id, favBtn);
-      });
-      // tills här
-      productsContainer.appendChild(productCard);
-    });
-})
+function toggleFavorite(productId, btnElement) {
+  let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
+
+  if (favorites.includes(productId)) {
+    favorites = favorites.filter(id => id !== productId);
+    btnElement.classList.remove("active");
+  } else {
+    favorites.push(productId);
+    btnElement.classList.add("active");
+  }
+
+  localStorage.setItem("myFavorites", JSON.stringify(favorites));
+}
 
 function createMainCategoryButtons() {
   mainCategoriesBox.innerHTML = `

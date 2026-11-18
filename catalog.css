@@ -203,7 +203,7 @@ html,body {
   cursor: pointer;
 }
 
-.heart-btn.liked {
+.heart-btn.active {
   color: red;
   background-color: #ffeaea;
 }
