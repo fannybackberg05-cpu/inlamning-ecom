@@ -132,7 +132,7 @@ function showCategory(products) {
         createSubCategoryButtons(cat);
     }
     updateProductList();
-}
+}}   //saknades
 
 function createSubCategoryButtons(mainName) {
     const subList = categories[mainName];

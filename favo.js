@@ -1,3 +1,4 @@
+import { addToCart } from "./addtocartfunktioner.js";  // lagt till import
 async function getProducts(productId) {
     if (!productId) return;
     try {
@@ -75,6 +76,11 @@ function createProductCards(post) {
     const closeBtn = item.querySelector(".close-btn");
     closeBtn.addEventListener("click", () => {
         removeFromFavorites(post.id);
+    });
+
+    const addBtn = item.querySelector(".add-to-cart-btn"); // la till knapp för addtocart import
+    addBtn.addEventListener("click", () => {
+        addToCart(post);
     });
 
     favorites.appendChild(item);
