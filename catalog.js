@@ -129,7 +129,7 @@ function showCategory(products) {
         createSubCategoryButtons(cat);
     }
     updateProductList();
-}}   //saknades
+}   //saknades
 
 function createSubCategoryButtons(mainName) {
     const subList = categories[mainName];
