@@ -21,8 +21,18 @@
         <img src="Images/hamburger.png" alt="" />
       </button>
     </header>
+    <!-- breadcrumb -->
+    <nav class="breadcrumb" aria-label="Brödsmulenavigering">
+  <a href="index.html">Hem</a>
+  <span aria-hidden="true">›</span>
+  <span aria-current="page">Produkter</span>
+</nav>
 
     <main>
+        <!-- kassa knapp -->
+        <a href="cart.html" class="cart-link">
+  🛒 Till kassan
+</a>
         <div class="info-container">
             <h1>Products</h1>
             <p>We offer a wide variety of products. Filter by category or search for what you are looking for.</p>
@@ -42,24 +52,6 @@
         </div>
         <div id="products-container" class="products-container"></div>
     </main>
-<footer class="footer" id="contact">
-      <div class="social">
-        <nav class="nav-bottom">
-          <h3>Snabblänkar</h3>
-          <li><a href="index.html">Hem</a></li>
-          <li><a href="catalog.html">Produkter</a></li>
-          <li><a href="index.html#about">Om oss</a></li>
-          <li><a href="index.html#contact">Kontakta oss</a></li>
-          <li><a href="favo.html">❤︎ Dina favoriter</a></li>
-          <li><a href="cart.html">🛒 Kassa</a></li>
-        </nav>
-
-        <div class="social-media">
-          <h3>Följ oss!</h3>
-          <a href="https://www.instagram.com/" target="_blank">
-            <img src="Images/instagram.png" alt="Instagram" />
-            <span>Vår Instagram</span>
-          </a>
 
     <div id="product-modal" class="modal-overlay">
         <div class="modal-box">
@@ -129,24 +121,38 @@
         </div>
     </div>
 
+     <!-- FOOTER -->
     <footer class="footer" id="contact">
-        <div class="footer-inner">
-            <div class="social">
-                <div class="nav-bottom">
-                    <h3>Quick Links</h3>
-                    <a href="index.html">Home</a>
-                    <a href="catalog.html">Products</a>
-                    <a href="#about">About Us</a>
-                    <a href="#contact">Contact Us</a>
-                </div>
-                <div class="social-media">
-                    <h3>Follow Us!</h3>
-                    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-                    <a href="https://facebook.se/" target="_blank">Facebook</a>
-                </div>
-            </div>
-            <p class="footer-copy">&copy; 2026 Our Company. All rights reserved.</p>
+      <div class="social">
+        <nav class="nav-bottom">
+          <h3>Snabblänkar</h3>
+          <li><a href="index.html">Hem</a></li>
+          <li><a href="catalog.html">Produkter</a></li>
+          <li><a href="index.html#about">Om oss</a></li>
+          <li><a href="index.html#contact">Kontakta oss</a></li>
+          <li><a href="favo.html">❤︎ Dina favoriter</a></li>
+          <li><a href="cart.html">🛒 Kassa</a></li>
+        </nav>
+
+        <div class="social-media">
+          <h3>Följ oss!</h3>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="Images/instagram.png" alt="Instagram" />
+            <span>Vår Instagram</span>
+          </a>
+
+          <a href="https://facebook.se/" target="_blank">
+            <img src="Images/facebook.png" alt="Facebook" />
+            <span>Vår Facebook</span>
+          </a>
         </div>
+      </div>
+      <div class="arrow">
+        <a href="index.html" class="pil">
+          <img src="Images/up-arrow.png" alt="Tillbaka till toppen" />
+        </a>
+      </div>
+      <p>&copy; 2026 Vårt Företag. Alla rättigheter reserverade.</p>
     </footer>
 
 </body>

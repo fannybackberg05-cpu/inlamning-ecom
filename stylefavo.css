@@ -29,6 +29,29 @@ html,body {
   text-decoration: none;
   color: beige;
 }
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 5%;
+  font-size: 14px;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  color: #183d30;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: #183d30;
+  font-weight: 600;
+}
 .h1 {
     text-align: center;
 }
