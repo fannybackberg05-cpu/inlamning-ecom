@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syne:wght@400..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syne:wght@400..800&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-html,body {
+html,
+body {
   margin: 0;
   background-color: beige;
   width: 100%;
   overflow-x: hidden;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 .hero img {
   display: block;
@@ -42,14 +43,14 @@ html,body {
   text-align: center;
   font-size: 3rem;
   margin-top: 20px;
-} 
-.hero p{
+}
+.hero p {
   text-align: center;
   font-size: 1.5rem;
   margin-top: 20px;
 }
 .btn {
-   display: block;
+  display: block;
   width: fit-content;
   margin: 20px auto;
   background-color: #183d30;
@@ -70,7 +71,6 @@ html,body {
 }
 
 .preview-container {
- 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -80,15 +80,15 @@ html,body {
 
 .product-card {
   border: 1px solid #ccc;
-    padding: 10px;
-    width: 200px;
-    margin-bottom: 10px;
-    border: 1px solid, grey;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: 1rem;
-    background-color:white
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 10px;
+  border:1px solid,grey;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: white;
 }
 
 .product-card img {
@@ -121,7 +121,6 @@ html,body {
 
 .About {
   padding: 60px 20px;
-  
 }
 .About h2 {
   text-align: center;
@@ -140,11 +139,10 @@ html,body {
   text-align: center;
 }
 
-
 .faq-container details p {
   margin-top: 20px;
   font-size: 17px;
-  color:#f407a9
+  color: #f407a9;
 }
 
 .faq-container {
@@ -152,6 +150,8 @@ html,body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  display: flex;
+  
 }
 .faq-container summary {
   font-size: 20px;
@@ -159,6 +159,7 @@ html,body {
   cursor: pointer;
   padding: 15px;
   border-bottom: 1px solid #a90909;
+ 
 }
 
 footer {
@@ -211,7 +212,6 @@ footer {
 .social-media span {
   color: beige;
   padding: 15px;
-  
 }
 
 .nav-bottom a {
@@ -226,25 +226,22 @@ footer {
 }
 
 @media (max-width: 600px) {
-
-.nav {
+  .nav {
     display: none;
-    
   }
-.nav.open {
+  .nav.open {
     display: block;
   }
-.mobil-menu {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
+  .mobil-menu {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
 
-.mobil-menu img {
-  width: 30px;
-  height: 30px;
-}
- 
+  .mobil-menu img {
+    width: 30px;
+    height: 30px;
+  }
 }
