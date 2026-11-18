@@ -46,13 +46,27 @@ const categories = {
   Food: ["groceries"],
 };
 
-fetch('https://dummyjson.com/products?limit=0')
-  .then(res => res.json())
-  .then(data => {
-    allProducts = data.products;
-    createMainCategoryButtons();
-    updateProductList();
-  });
+// Kolla om det finns sparade produkter i localStorage först, annars hämta från API
+const savedProducts = JSON.parse(localStorage.getItem("allProducts"));
+
+if (savedProducts) {
+  allProducts = savedProducts;
+  createMainCategoryButtons();
+  updateProductList();
+} else {
+  fetch('https://dummyjson.com/products?limit=0')
+    .then(res => res.json())
+    .then(data => {
+      allProducts = data.products;
+      saveToLocalStorage();
+      createMainCategoryButtons();
+      updateProductList();
+    });
+}
+
+function saveToLocalStorage() {
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
+}
 
 function toggleFavorite(productId, btnElement) {
   let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
@@ -81,7 +95,6 @@ function createMainCategoryButtons() {
     `;
 }
 
-// Funktion för att välja huvudkategori ändrat erika
 function selectMainCategory(cat) {
   selectedMainCategory = cat;
   selectedSubCategory = "all";
@@ -95,22 +108,6 @@ function selectMainCategory(cat) {
 
   updateProductList();
 }
-
-function showCategory(products) {
-  const uniqueCategories = [
-    ...new Set(products.map((product) => product.category)),
-  ];
-
-  let categoriesHTML =
-    '<button class="tag-btn active" onclick="selectCategory(\'\')">Alla</button>';
-
-  if (cat === "all" || !categories[cat] || categories[cat].length <= 1) {
-    subCategoriesBox.style.display = "none";
-  } else {
-    createSubCategoryButtons(cat);
-  }
-  updateProductList();
-} //saknades
 
 function createSubCategoryButtons(mainName) {
   const subList = categories[mainName];
@@ -138,6 +135,7 @@ function selectSubCategory(sub) {
   });
   updateProductList();
 }
+
 function updateProductList() {
   const searchText = searchInput.value.toLowerCase();
   const sortChoice = sortSelect.value;
@@ -164,6 +162,8 @@ function updateProductList() {
 }
 
 function showProducts(productsList) {
+  const favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
+
   let html = `
         <div class="product-card add-new-card" onclick="openCreateMode()" style="display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px dashed #ccc; background: #fafafa;">
             <div style="text-align: center;">
@@ -172,16 +172,20 @@ function showProducts(productsList) {
             </div>
         </div>
     `;
-  //knapp för att spara favorit tillfavvosida erika
+
   html += productsList
-    .map(
-      (product) => `
+    .map((product) => {
+      const isFavorite = favorites.includes(product.id);
+      const activeClass = isFavorite ? "active" : "";
+
+      var safeProduct = encodeURIComponent(JSON.stringify(product));
+
+      console.log(safeProduct)
+      return `
         <div class="product-card" id="product-${product.id}">
             <div>
                 <div class="image-box">
- <button class="heart-btn"
-    onclick="toggleFavorite(${product.id}, this)"> ♥
-</button>
+                    <button class="heart-btn ${activeClass}" onclick="toggleFavorite(${product.id}, this)"> ♥ </button>
                     <img src="${product.thumbnail}" alt="${product.title}">
                 </div>
                 <h2>${product.title}</h2>
@@ -191,16 +195,27 @@ function showProducts(productsList) {
                     <span>$${product.price}</span>
                     <span>★ ${product.rating || 5}</span>
                 </div>
-                <button class="secondary-btn" onclick='openProductModal(${JSON.stringify(product)})'>Read more</button>
+                <button class="secondary-btn" data-product="${safeProduct}" onclick="openProductModal(this)" >Read more</button>
                 <button class="primary-btn" onclick="alert('Added ${product.title} to cart!')">Add to cart</button>
             </div>
         </div>
-    `,
-    )
+    `;
+    })
     .join("");
+
+
 
   productsContainer.innerHTML = html;
 }
+
+let read_more = document.querySelectorAll('.secondary-btn')
+read_more.forEach(button => {
+    button.addEventListener('click', (e) => {
+        
+        console.log(e.target)
+    })
+})
+
 function openCreateMode() {
   isCreatingNew = true;
   formHeading.textContent = "Skapa ny produkt";
@@ -215,20 +230,28 @@ function openCreateMode() {
   editSection.style.display = "block";
   modal.style.display = "flex";
 }
+
 function deleteCurrentProduct() {
   if (!currentProduct) return;
   if (confirm("Är du säker på att du vill ta bort denna produkt?")) {
     allProducts = allProducts.filter(
       (p) => Number(p.id) !== Number(currentProduct.id),
     );
+    
+    saveToLocalStorage();
     modal.style.display = "none";
     updateProductList();
   }
 }
+
 searchInput.oninput = updateProductList;
 sortSelect.onchange = updateProductList;
 
-function openProductModal(product) {
+function openProductModal(element) {
+
+   var product = JSON.parse(decodeURIComponent(element.dataset.product));
+
+   console.log(product)
   currentProduct = product;
   currentQuantity = 1;
   isCreatingNew = false;
@@ -243,6 +266,7 @@ function openProductModal(product) {
   modalPrice.textContent = "$" + product.price;
   modalDescription.textContent = product.description;
 
+  console.log(product);
   let specsHtml = "";
   if (product.brand)
     specsHtml += `<li><strong>Brand:</strong> ${product.brand}</li>`;
@@ -262,6 +286,7 @@ function openProductModal(product) {
     : "none";
   modal.style.display = "flex";
 }
+
 function openEditMode() {
   if (!currentProduct) return;
 
@@ -270,13 +295,13 @@ function openEditMode() {
 
   document.getElementById("edit-title").value = currentProduct.title;
   document.getElementById("edit-price").value = currentProduct.price;
-  document.getElementById("edit-description").value =
-    currentProduct.description;
+  document.getElementById("edit-description").value = currentProduct.description;
   document.getElementById("edit-thumbnail").value = currentProduct.thumbnail;
 
   modalViewSection.style.display = "none";
   editSection.style.display = "block";
 }
+
 saveEditBtn.addEventListener("click", () => {
   const title = document.getElementById("edit-title").value;
   const price = Number(document.getElementById("edit-price").value);
@@ -289,28 +314,34 @@ saveEditBtn.addEventListener("click", () => {
   }
 
   if (isCreatingNew) {
+    // Skapa ny produkt lokalt och spara
     const newProd = {
       id: Date.now(),
       title: title,
       price: price,
       description: description,
       thumbnail: thumbnail,
-      category:
-        selectedMainCategory !== "all" ? selectedMainCategory : "beauty",
+      category: selectedMainCategory !== "all" ? selectedMainCategory : "beauty",
       rating: 5,
       stock: 10,
     };
+    
     allProducts.unshift(newProd);
     alert("Ny produkt har skapats!");
   } else {
+    // Uppdatera befintlig produkt
     if (!currentProduct) return;
+
     currentProduct.title = title;
     currentProduct.price = price;
     currentProduct.description = description;
     currentProduct.thumbnail = thumbnail;
+
     alert("Produkten har uppdaterats!");
   }
 
+  // Spara alltid till localStorage och uppdatera sidan
+  saveToLocalStorage();
   modal.style.display = "none";
   updateProductList();
 });
@@ -348,6 +379,7 @@ plusBtn.onclick = () => {
     qtyNumber.textContent = currentQuantity;
   }
 };
+
 modalCartBtn.onclick = () => {
   alert(`Added ${currentQuantity}x ${currentProduct.title} to cart!`);
   modal.style.display = "none";
@@ -356,11 +388,11 @@ modalCartBtn.onclick = () => {
 const menuBtn = document.querySelector(".mobil-menu");
 const nav = document.querySelector("#nav");
 
-menuBtn.addEventListener("click", () => {
-  nav.classList.toggle("open");
-
-  const isOpen = nav.classList.contains("open");
-
-  menuBtn.setAttribute("aria-expanded", isOpen);
-  menuBtn.setAttribute("aria-label", isOpen ? "Stäng menyn" : "Öppna menyn");
-});
+if (menuBtn && nav) {
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    const isOpen = nav.classList.contains("open");
+    menuBtn.setAttribute("aria-expanded", isOpen);
+    menuBtn.setAttribute("aria-label", isOpen ? "Stäng menyn" : "Öppna menyn");
+  });
+}
