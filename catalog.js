@@ -73,6 +73,7 @@ fetch('https://dummyjson.com/products?limit=0')
         // tills här
         productsContainer.appendChild(productCard);
     });
+})
    
 function toggleFavorite(productId, btnElement) {
     let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
@@ -100,6 +101,8 @@ function selectMainCategory(cat) {
     selectedMainCategory = cat;
     selectedSubCategory = "all";
     createMainCategoryButtons();
+}
+
 function toggleFavorite(productId, btnElement) {
     let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
 
@@ -352,4 +355,4 @@ menuBtn.addEventListener("click", () => {
     isOpen ? "Stäng menyn" : "Öppna menyn"
   );
 
-});
+})
