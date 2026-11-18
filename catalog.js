@@ -183,7 +183,12 @@ function showProducts(productsList) {
         <div class="product-card" id="product-${product.id}">
             <div>
                 <div class="image-box">
-                    <button class="heart-btn" onclick="this.classList.toggle('liked')">♥</button>
+                    <button
+    class="heart-btn"
+    onclick="toggleFavorite(${product.id}, this)"
+>
+    ♥
+</button>
                     <img src="${product.thumbnail}" alt="${product.title}">
                 </div>
                 <h2>${product.title}</h2>
