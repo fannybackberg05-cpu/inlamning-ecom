@@ -47,6 +47,19 @@ fetch('https://dummyjson.com/products?limit=0')
         createMainCategoryButtons();
         updateProductList();
     });
+   
+function toggleFavorite(productId, btnElement) {
+    let favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
+
+    if (favorites.includes(productId)) {
+        favorites = favorites.filter(id => id !== productId);
+        btnElement.classList.remove('liked');
+    } else {
+        favorites.push(productId);
+        btnElement.classList.add('liked');
+    }
+    localStorage.setItem("myFavorites", JSON.stringify(favorites));
+}
 
 function createMainCategoryButtons() {
     mainCategoriesBox.innerHTML = `
