@@ -62,9 +62,6 @@ fetch('https://dummyjson.com/products?limit=0')
             <span id="productPrice" weight="bold">${product.price} $</span>
             <span id="productRating" weight="light">${product.rating} stars</span>
             <button id="read-more-btn">Läs mer</button>
-            <button class="fav-btn">
-                ${isFavorite ? '❤️ Sparad' : '🤍 Spara favorit'}
-            </button>
         `;// Har skrivit härifrån(Fadi) 
         const favBtn = productCard.querySelector('.fav-btn');
         favBtn.addEventListener('click', () => {
@@ -132,7 +129,7 @@ function showCategory(products) {
         createSubCategoryButtons(cat);
     }
     updateProductList();
-}}   //saknades
+}   //saknades
 
 function createSubCategoryButtons(mainName) {
     const subList = categories[mainName];
