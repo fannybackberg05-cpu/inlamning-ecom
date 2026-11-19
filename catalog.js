@@ -49,7 +49,8 @@ const categories = {
 // Kolla om det finns sparade produkter i localStorage först, annars hämta från API
 const savedProducts = JSON.parse(localStorage.getItem("allProducts"));
 
-if (savedProducts) {
+
+if (savedProducts && Array.isArray(savedProducts) && savedProducts.length > 0) {
   allProducts = savedProducts;
   createMainCategoryButtons();
   updateProductList();
@@ -65,7 +66,11 @@ if (savedProducts) {
 }
 
 function saveToLocalStorage() {
-  localStorage.setItem("allProducts", JSON.stringify(allProducts));
+  try {
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
+  } catch (err) {
+    alert("Fel vid sparning till localStorage: " + err.message);
+  }
 }
 
 function toggleFavorite(productId, btnElement) {
@@ -249,9 +254,8 @@ sortSelect.onchange = updateProductList;
 
 function openProductModal(element) {
 
-   var product = JSON.parse(decodeURIComponent(element.dataset.product));
-
-   console.log(product)
+var product = JSON.parse(decodeURIComponent(element.dataset.product));
+  
   currentProduct = product;
   currentQuantity = 1;
   isCreatingNew = false;
@@ -266,7 +270,6 @@ function openProductModal(element) {
   modalPrice.textContent = "$" + product.price;
   modalDescription.textContent = product.description;
 
-  console.log(product);
   let specsHtml = "";
   if (product.brand)
     specsHtml += `<li><strong>Brand:</strong> ${product.brand}</li>`;
@@ -314,7 +317,6 @@ saveEditBtn.addEventListener("click", () => {
   }
 
   if (isCreatingNew) {
-    // Skapa ny produkt lokalt och spara
     const newProd = {
       id: Date.now(),
       title: title,
@@ -329,7 +331,6 @@ saveEditBtn.addEventListener("click", () => {
     allProducts.unshift(newProd);
     alert("Ny produkt har skapats!");
   } else {
-    // Uppdatera befintlig produkt
     if (!currentProduct) return;
 
     currentProduct.title = title;
@@ -337,13 +338,12 @@ saveEditBtn.addEventListener("click", () => {
     currentProduct.description = description;
     currentProduct.thumbnail = thumbnail;
 
+    allProducts = allProducts.map(p => Number(p.id) === Number(currentProduct.id) ? currentProduct : p);
+
     alert("Produkten har uppdaterats!");
   }
-
-  // Spara alltid till localStorage och uppdatera sidan
   saveToLocalStorage();
   modal.style.display = "none";
-  updateProductList();
 });
 
 cancelEditBtn.addEventListener("click", () => {
