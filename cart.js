@@ -2,6 +2,8 @@ import { getCart, saveCart } from "./addtocartfunktioner.js";
 // navigering mobil
 const menuBtn = document.querySelector(".mobil-menu");
 const nav = document.querySelector(".nav");
+const checkoutBtn = document.querySelector("#checkout-btn");
+const checkoutMessage = document.querySelector("#checkout-message");
 
 menuBtn.addEventListener("click", () => {
   nav.classList.toggle("open");
@@ -95,3 +97,25 @@ function updateTotal() {
   cartTotal.textContent = total.toFixed(2) + " $";
 }
 updateTotal();
+
+checkoutBtn.addEventListener("click", () => {
+
+  const cart = getCart();
+
+  // Kontrollera att varukorgen inte är tom
+  if (cart.length === 0) {
+    checkoutMessage.textContent = "Din varukorg är tom!";
+    return;
+  }
+  saveCart([]);
+  document.querySelector("#cart-items").innerHTML = "";
+
+  updateTotal();
+  checkoutMessage.textContent =
+    "Tack för ditt köp! Din beställning har genomförts.";
+
+  setTimeout(() => {
+    checkoutMessage.textContent = "";
+  }, 2000);
+
+});
