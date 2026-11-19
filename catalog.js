@@ -168,7 +168,6 @@ function updateProductList() {
 
 function showProducts(productsList) {
   const favorites = JSON.parse(localStorage.getItem("myFavorites")) || [];
-
   let html = `
         <div class="product-card add-new-card" onclick="openCreateMode()" style="display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px dashed #ccc; background: #fafafa;">
             <div style="text-align: center;">
@@ -190,7 +189,9 @@ function showProducts(productsList) {
         <div class="product-card" id="product-${product.id}">
             <div>
                 <div class="image-box">
-                    <button class="heart-btn ${activeClass}" onclick="toggleFavorite(${product.id}, this)"> ♥ </button>
+                    <button class="heart-btn ${activeClass}"
+                        onclick="toggleFavorite(${product.id}, this)"> ♥
+                    </button>
                     <img src="${product.thumbnail}" alt="${product.title}">
                 </div>
                 <h2>${product.title}</h2>
@@ -201,16 +202,28 @@ function showProducts(productsList) {
                     <span>★ ${product.rating || 5}</span>
                 </div>
                 <button class="secondary-btn" data-product="${safeProduct}" onclick="openProductModal(this)" >Read more</button>
-                <button class="primary-btn" onclick="alert('Added ${product.title} to cart!')">Add to cart</button>
+                <button class="primary-btn" onclick="addProductToCart(${product.id})">Add to cart</button>
             </div>
         </div>
-    `;
+      `;
     })
     .join("");
 
-
-
   productsContainer.innerHTML = html;
+}
+// lägga till produkter kassa
+async function addProductToCart(productId) {
+  const product = allProducts.find(p => p.id === productId);
+
+  if (!product) {
+    return;
+  }
+
+  const { addToCart } = await import("./addtocartfunktioner.js");
+
+  addToCart(product);
+
+  alert("Produkten har lagts i varukorgen!");
 }
 
 let read_more = document.querySelectorAll('.secondary-btn')

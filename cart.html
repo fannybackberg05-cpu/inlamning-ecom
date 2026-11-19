@@ -24,9 +24,6 @@
         <img src="Images/hamburger.png" alt="" />
       </button>
     </header>
-
- 
-  
     
  <!-- breadcrumb -->
   <nav class="breadcrumb" aria-label="Brödsmulenavigering">
@@ -36,8 +33,49 @@
   <span aria-hidden="true">-</span>
   <span aria-current="page">Varukorg</span>
 </nav>
-<h1>Kassa</h1>
-    <p>jasfklsdjflkjsdlfkjsdklfj</p>
+
+<!-- Kassa -->
+<main class="checkout-page">
+  <h1>Kassa</h1>
+  <div class="checkout-container">
+
+    <!-- VARUKORG -->
+    <section class="cart-products">
+      <h2>Din varukorg</h2>
+      <div id="cart-items">
+        <!-- Produkterna ska visas här med JavaScript -->
+      </div>
+    </section>
+
+
+    <!-- SAMMANFATTNING -->
+    <aside class="cart-summary">
+      <h2>Sammanfattning</h2>
+
+      <div class="summary-row">
+        <span>Produkter</span>
+        <span id="subtotal">0.00 $</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Frakt</span>
+        <span>Gratis</span>
+      </div>
+<!--  hr horisontell linje -->
+      <hr> 
+      <div class="summary-row">
+        <strong>Totalt</strong>
+        <strong id="cart-total">0.00 $</strong>
+      </div>
+
+      <button id="checkout-btn" type="button">
+        Genomför köp
+      </button>
+
+      <p id="checkout-message" role="status" aria-live="polite"></p>
+    </aside>
+  </div>
+</main>
 
 
 
