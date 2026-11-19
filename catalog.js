@@ -46,7 +46,6 @@ const categories = {
   Food: ["groceries"],
 };
 
-// Kolla om det finns sparade produkter i localStorage först, annars hämta från API
 const savedProducts = JSON.parse(localStorage.getItem("allProducts"));
 
 
@@ -211,7 +210,6 @@ function showProducts(productsList) {
 
   productsContainer.innerHTML = html;
 }
-// lägga till produkter kassa
 async function addProductToCart(productId) {
   const product = allProducts.find(p => p.id === productId);
 
