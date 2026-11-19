@@ -183,7 +183,7 @@ function showProducts(productsList) {
 
       var safeProduct = encodeURIComponent(JSON.stringify(product));
 
-      console.log(safeProduct)
+      // console.log(safeProduct)
       return `
         <div class="product-card" id="product-${product.id}">
             <div>
@@ -228,7 +228,7 @@ let read_more = document.querySelectorAll('.secondary-btn')
 read_more.forEach(button => {
     button.addEventListener('click', (e) => {
         
-        console.log(e.target)
+        // console.log(e.target)
     })
 })
 
@@ -390,9 +390,18 @@ plusBtn.onclick = () => {
     qtyNumber.textContent = currentQuantity;
   }
 };
+// Lägger till produkter i kundvagnen
+modalCartBtn.onclick = async () => {
 
-modalCartBtn.onclick = () => {
-  alert(`Added ${currentQuantity}x ${currentProduct.title} to cart!`);
+  if (!currentProduct) {
+    return;
+  }
+  const { addToCart } = await import("./addtocartfunktioner.js");
+  for (let i = 0; i < currentQuantity; i++) {
+    addToCart(currentProduct);
+  }
+  alert(`${currentQuantity} st ${currentProduct.title} har lagts i varukorgen!`);
+
   modal.style.display = "none";
 };
 
