@@ -1,115 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="cart.css" />
     <script type="module" src="cart.js" defer></script> <!-- lagt till type module-->
-</head>
-<body>
-     <!-- NAVIGATION -->
+  </head>
+  <body>
     <header>
       <nav class="nav">
-        <li><a href="index.html">Hem</a></li>
-        <li><a href="catalog.html">Produkter</a></li>
-        <li><a href="index.html#about">Om oss</a></li>
-        <li><a href="index.html#contact">Kontakta oss</a></li>
-        <li><a href="favo.html">❤︎ Dina favoriter</a></li>
-        <li><a href="cart.html">🛒 Kassa</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalog.html">Products</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+        <li><a href="favo.html">❤︎ Your Favorites</a></li>
+        <li><a href="cart.html">🛒 Checkout</a></li>
       </nav>
 
-       <!-- MOBILMENY -->
-      <button class="mobil-menu" type="button" aria-label="Öppna menyn">
+      <button class="mobil-menu" type="button" aria-label="Open menu">
         <img src="Images/hamburger.png" alt="" />
       </button>
     </header>
- <!-- breadcrumb -->
-  <nav class="breadcrumb" aria-label="Brödsmulenavigering">
-  <a href="index.html">Hem</a>
-  <span aria-hidden="true">-</span>
-  <a href="catalog.html">Produkter</a>
-  <span aria-hidden="true">-</span>
-  <span aria-current="page">Varukorg</span>
-</nav>
 
-<!-- Kassa -->
-<main class="checkout-page">
-  <h1>Kassa</h1>
-  <div class="checkout-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+      <a href="index.html">Home</a>
+      <span aria-hidden="true">-</span>
+      <a href="catalog.html">Products</a>
+      <span aria-hidden="true">-</span>
+      <span aria-current="page">Checkout</span>
+    </nav>
 
-    <!-- VARUKORG -->
-    <section class="cart-products">
-      <h2>Din varukorg</h2>
-      <div id="cart-items">
-        <!-- Produkterna ska visas här med JavaScript -->
+    <main class="checkout-page">
+      <h1>Checkout</h1>
+      <div class="checkout-container">
+        <section class="cart-products">
+          <h2>Products</h2>
+          <div id="cart-items"></div>
+        </section>
+
+        <aside class="cart-summary">
+          <h2>Summary</h2>
+
+          <div class="summary-row">
+            <span>Products</span>
+            <span id="subtotal">0.00 $</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>Free</span>
+          </div>
+          <!--  hr horisontell linje -->
+          <hr />
+          <div class="summary-row">
+            <strong>Total</strong>
+            <strong id="cart-total">0.00 $</strong>
+          </div>
+
+          <button id="checkout-btn" type="button">Complete Purchase</button>
+
+          <p id="checkout-message" role="status" aria-live="polite"></p>
+        </aside>
       </div>
-    </section>
+    </main>
 
-
-    <!-- SAMMANFATTNING -->
-    <aside class="cart-summary">
-      <h2>Sammanfattning</h2>
-
-      <div class="summary-row">
-        <span>Produkter</span>
-        <span id="subtotal">0.00 $</span>
-      </div>
-
-      <div class="summary-row">
-        <span>Frakt</span>
-        <span>Gratis</span>
-      </div>
-<!--  hr horisontell linje -->
-      <hr> 
-      <div class="summary-row">
-        <strong>Totalt</strong>
-        <strong id="cart-total">0.00 $</strong>
-      </div>
-
-      <button id="checkout-btn" type="button">
-        Genomför köp
-      </button>
-
-      <p id="checkout-message" role="status" aria-live="polite"></p>
-    </aside>
-  </div>
-</main>
-
-
-
-        <!-- FOOTER -->
     <footer class="footer" id="contact">
       <div class="social">
         <nav class="nav-bottom">
           <h3>Snabblänkar</h3>
-          <li><a href="index.html">Hem</a></li>
-          <li><a href="catalog.html">Produkter</a></li>
-          <li><a href="index.html#about">Om oss</a></li>
-          <li><a href="index.html#contact">Kontakta oss</a></li>
-          <li><a href="favo.html">❤︎ Dina favoriter</a></li>
-          <li><a href="cart.html">🛒 Kassa</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="catalog.html">Products</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="favo.html">❤︎ Your Favorites</a></li>
+          <li><a href="cart.html">🛒 Checkout</a></li>
         </nav>
 
         <div class="social-media">
-          <h3>Följ oss!</h3>
+          <h3>Follow Us!</h3>
           <a href="https://www.instagram.com/" target="_blank">
             <img src="Images/instagram.png" alt="Instagram" />
-            <span>Vår Instagram</span>
+            <span>Instagram</span>
           </a>
 
           <a href="https://facebook.se/" target="_blank">
             <img src="Images/facebook.png" alt="Facebook" />
-            <span>Vår Facebook</span>
+            <span>Facebook</span>
           </a>
         </div>
       </div>
       <div class="arrow">
-        <a href="index.html" class="pil">
-          <img src="Images/up-arrow.png" alt="Tillbaka till toppen" />
+        <a href="cart.html" class="pil">
+          <img src="Images/up-arrow.png" alt="Back to top" />
         </a>
       </div>
-      <p>&copy; 2026 Vårt Företag. Alla rättigheter reserverade.</p>
+      <p>&copy; 2026 Our Company. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>
