@@ -257,6 +257,32 @@ footer {
   text-decoration: underline;
   color: beige;
 }
+/* css för toast-meny, i stort sett ett meddelande när vi lägger till
+en vara via favoriter istället för katalogen*/
+.cart-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #183d30;
+  color: beige;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  
+  /* Startläge för animationen */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 @media (max-width: 600px) {
 
