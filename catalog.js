@@ -354,6 +354,7 @@ saveEditBtn.addEventListener("click", () => {
     alert("Produkten har uppdaterats!");
   }
   saveToLocalStorage();
+  updateProductList();
   modal.style.display = "none";
 });
 
