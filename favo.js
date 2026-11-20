@@ -1,15 +1,21 @@
 import { addToCart } from "./addtocartfunktioner.js";  // lagt till import
+
 async function getProducts(productId) {
     if (!productId) return;
+    const savedProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+    const foundProduct = savedProducts.find(p => Number(p.id) === Number(productId));
+    if (foundProduct) {
+        createProductCards(foundProduct);
+        return;
+    }
     try {
         const res = await fetch(`https://dummyjson.com/products/${productId}`);
-        
         if (!res.ok) {
             throw new Error(`Couldn't fetch product. Status: ${res.status}`);
         }
         const data = await res.json();
         createProductCards(data); 
-    } catch (error){
+    } catch (error) {
         console.error(error);
     }
 }
