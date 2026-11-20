@@ -190,6 +190,35 @@ footer {
   text-decoration: underline;
   color: beige;
 }
+/*css för ta-bort kanppen(soptunnan)*/
+.cart-product-info {
+  flex: 1; 
+  /* Gör att infodelen tar upp utrymmet i mitten
+   och trycker ut soptunnan till höger */
+}
+
+.remove-item-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.remove-item-btn:hover {
+  color: #c0392b;
+  background-color: #fdf0ed;
+  transform: scale(1.08);
+}
+
+.remove-item-btn:active {
+  transform: scale(0.95);
+}
 
 @media (max-width: 600px) {
 

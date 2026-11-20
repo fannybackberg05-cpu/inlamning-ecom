@@ -68,17 +68,6 @@ function createProductCards(post) {
         </div>`
     ;
 
-    /* knapp-varugkorg-alternativ
-        <button class="add-to-cart-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-                Add to Cart
-        </button>
-     */
-
     const closeBtn = item.querySelector(".close-btn");
     closeBtn.addEventListener("click", () => {
         removeFromFavorites(post.id);
@@ -87,12 +76,37 @@ function createProductCards(post) {
     const addBtn = item.querySelector(".add-to-cart-btn"); // la till knapp för addtocart import
     addBtn.addEventListener("click", () => {
         addToCart(post);
+        showToast(`"${post.title}" has been added to your cart!`);
     });
 
     favorites.appendChild(item);
 }
 
 loadFavorites();
+
+function showToast(message) {
+    // Ta bort eventuell gammal toast om användaren klickar snabbt flera gånger
+    const existingToast = document.querySelector(".cart-toast");
+    if (existingToast) existingToast.remove();
+
+    const toast = document.createElement("div");
+    toast.classList.add("cart-toast");
+    toast.setAttribute("role", "status");
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    // Trigga inflygningen
+    requestAnimationFrame(() => {
+        toast.classList.add("show");
+    });
+
+    // Dölj och ta bort efter 3 sekunder
+    setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
 
 // navigering mobil
 const menuBtn = document.querySelector(".mobil-menu");

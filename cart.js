@@ -15,7 +15,8 @@ menuBtn.addEventListener("click", () => {
 });
 
 // Hämtar allt som har lagts till från andra sidor och visar det i kassans konsol
-const currentCart = getCart();
+let currentCart = getCart();
+// ändrade till let annars så kraschar det när man använder filter
 console.log("Produkter som har kommit fram till kassan:", currentCart);
 console.table(currentCart);
 
@@ -45,6 +46,25 @@ currentCart.forEach((product) => {
   const minusBtn = document.createElement("button");
   minusBtn.textContent = "−";
   minusBtn.type = "button";
+  // ta-bort knappen och dens event listener
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.classList.add("remove-item-btn");
+  removeBtn.setAttribute("aria-label", `Remove ${product.title}`);
+  removeBtn.innerHTML = `
+    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"></polyline>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+      <line x1="10" y1="11" x2="10" y2="17"></line>
+      <line x1="14" y1="11" x2="14" y2="17"></line>
+    </svg>
+  `;
+  removeBtn.addEventListener("click", () => {
+    currentCart = currentCart.filter((item) => item.id !== product.id);
+    saveCart(currentCart);
+    card.remove();
+    updateTotal();
+  });
 
   const quantityText = document.createElement("span");
   quantityText.classList.add("quantity");
@@ -75,7 +95,7 @@ currentCart.forEach((product) => {
   });
 
   info.append(title, price, quantity);
-  card.append(image, info);
+  card.append(image, info, removeBtn); // append så att knappen syns
 
   container.append(card);
 });
