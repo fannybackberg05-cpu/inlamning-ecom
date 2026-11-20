@@ -28,13 +28,27 @@ body {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: right;
-  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
   padding: 10px;
 }
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
 .nav a {
   text-decoration: none;
   color: beige;
+}
+
+.nav p {
+  color: beige;
+  padding: 10px;
+  font-size: 1rem;
+  margin-right: auto;
 }
 .breadcrumb {
   display: none;

@@ -64,10 +64,11 @@ html,body {
   margin-bottom: 40px;
 }
 .checkout-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
 }
 .cart-products h2 {
   color: #183d30;
@@ -178,9 +179,7 @@ footer {
 .social-media span {
   color: beige;
   padding: 15px;
-  
 }
-
 .nav-bottom a {
   color: beige;
   margin: 10px;

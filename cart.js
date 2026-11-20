@@ -39,7 +39,6 @@ currentCart.forEach((product) => {
   const price = document.createElement("p");
   price.textContent = product.price + " $";
 
-  // Skapa en div för antal och knappar
   const quantity = document.createElement("div");
   quantity.classList.add("quantity-controls");
 
@@ -104,7 +103,7 @@ checkoutBtn.addEventListener("click", () => {
 
   // Kontrollera att varukorgen inte är tom
   if (cart.length === 0) {
-    checkoutMessage.textContent = "Din varukorg är tom!";
+    checkoutMessage.textContent = "Your shopping cart is empty!";
     return;
   }
   saveCart([]);
@@ -112,7 +111,7 @@ checkoutBtn.addEventListener("click", () => {
 
   updateTotal();
   checkoutMessage.textContent =
-    "Tack för ditt köp! Din beställning har genomförts.";
+    "Thank you for your purchase! Your order has been placed successfully.";
 
   setTimeout(() => {
     checkoutMessage.textContent = "";
