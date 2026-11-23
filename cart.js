@@ -101,18 +101,22 @@ currentCart.forEach((product) => {
 });
 
 
-const subtotal = document.querySelector("#subtotal");
+const cartCount = document.querySelector("#cart-count");
 const cartTotal = document.querySelector("#cart-total");
 
-// Funktion som räknar ut totalsumman
+// Funktion som räknar ut totalsumman antal produkter i varukorgen och uppdaterar summan i kassan
 function updateTotal() {
   const cart = getCart();
+
+  const totalQuantity = cart.reduce((sum, product) => {
+    return sum + product.quantity;
+  }, 0);
 
   const total = cart.reduce((sum, product) => {
     return sum + product.price * product.quantity;
   }, 0);
 
-  subtotal.textContent = total.toFixed(2) + " $";
+  cartCount.textContent = totalQuantity;
   cartTotal.textContent = total.toFixed(2) + " $";
 }
 updateTotal();
@@ -135,6 +139,6 @@ checkoutBtn.addEventListener("click", () => {
 
   setTimeout(() => {
     checkoutMessage.textContent = "";
-  }, 2000);
+  }, 3000);
 
 });
