@@ -157,6 +157,11 @@ function updateProductList() {
     return matchesSearch && matchesMain && matchesSub;
   });
 
+  if (filtered.length === 0) {
+    productsContainer.innerHTML = `<p class="no-results">No product found with this searchterm: "${searchInput.value}".</p>`;
+    return;
+  }
+
   if (sortChoice === "price-asc") filtered.sort((a, b) => a.price - b.price);
   if (sortChoice === "price-desc") filtered.sort((a, b) => b.price - a.price);
   if (sortChoice === "rating-desc")
