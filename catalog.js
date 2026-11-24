@@ -54,12 +54,12 @@ if (savedProducts && Array.isArray(savedProducts) && savedProducts.length > 0) {
   createMainCategoryButtons();
   updateProductList();
 } else {
-  productsContainer.innerHTML = `<p class="loading-message">Laddar produkter...</p>`;
+  productsContainer.innerHTML = `<p class="loading-message">Loading products...</p>`;
 
   fetch("https://dummyjson.com/products?limit=0")
     .then((res) => {
       if (!res.ok) {
-        throw new Error(`Serverfel: ${res.status}`);
+        throw new Error(`Server-error: ${res.status}`);
       }
       return res.json();
     })
@@ -70,8 +70,8 @@ if (savedProducts && Array.isArray(savedProducts) && savedProducts.length > 0) {
       updateProductList(); 
     })
     .catch((err) => {
-      console.error("Fel vid hämtning:", err);
-      productsContainer.innerHTML = `<p class="error-message">Kunde inte hämta produkterna just nu. Försök igen senare.</p>`;
+      console.error("Server-error:", err);
+      productsContainer.innerHTML = `<p class="error-message">Could not load products. Try again later.</p>`;
     });
 }
 
@@ -79,7 +79,7 @@ function saveToLocalStorage() {
   try {
     localStorage.setItem("allProducts", JSON.stringify(allProducts));
   } catch (err) {
-    alert("Fel vid sparning till localStorage: " + err.message);
+    alert("Something went wrong when saving to localstorage: " + err.message);
   }
 }
 
@@ -237,7 +237,7 @@ async function addProductToCart(productId) {
 
   addToCart(product);
 
-  alert("Produkten har lagts i varukorgen!");
+  alert("Product is added to cart!");
 }
 
 let read_more = document.querySelectorAll('.secondary-btn')
@@ -250,7 +250,7 @@ read_more.forEach(button => {
 
 function openCreateMode() {
   isCreatingNew = true;
-  formHeading.textContent = "Skapa ny produkt";
+  formHeading.textContent = "Create new product";
 
   document.getElementById("edit-title").value = "";
   document.getElementById("edit-price").value = "";
@@ -265,7 +265,7 @@ function openCreateMode() {
 
 function deleteCurrentProduct() {
   if (!currentProduct) return;
-  if (confirm("Är du säker på att du vill ta bort denna produkt?")) {
+  if (confirm("Are you sure you want to remove the product?")) {
     allProducts = allProducts.filter(
       (p) => Number(p.id) !== Number(currentProduct.id),
     );
@@ -321,7 +321,7 @@ function openEditMode() {
   if (!currentProduct) return;
 
   isCreatingNew = false;
-  formHeading.textContent = "Redigera produkt";
+  formHeading.textContent = "Edit product";
 
   document.getElementById("edit-title").value = currentProduct.title;
   document.getElementById("edit-price").value = currentProduct.price;
@@ -339,7 +339,7 @@ saveEditBtn.addEventListener("click", () => {
   const thumbnail = document.getElementById("edit-thumbnail").value;
 
   if (!title) {
-    alert("Du måste ange en titel!");
+    alert("You haft to add title!");
     return;
   }
 
@@ -356,7 +356,7 @@ saveEditBtn.addEventListener("click", () => {
     };
     
     allProducts.unshift(newProd);
-    alert("Ny produkt har skapats!");
+    alert("New product created!");
   } else {
     if (!currentProduct) return;
 
@@ -367,7 +367,7 @@ saveEditBtn.addEventListener("click", () => {
 
     allProducts = allProducts.map(p => Number(p.id) === Number(currentProduct.id) ? currentProduct : p);
 
-    alert("Produkten har uppdaterats!");
+    alert("Product is updated!");
   }
   saveToLocalStorage();
   modal.style.display = "none";
