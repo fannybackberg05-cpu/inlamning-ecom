@@ -54,13 +54,24 @@ if (savedProducts && Array.isArray(savedProducts) && savedProducts.length > 0) {
   createMainCategoryButtons();
   updateProductList();
 } else {
-  fetch('https://dummyjson.com/products?limit=0')
-    .then(res => res.json())
-    .then(data => {
+  productsContainer.innerHTML = `<p class="loading-message">Laddar produkter...</p>`;
+
+  fetch("https://dummyjson.com/products?limit=0")
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Serverfel: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then((data) => {
       allProducts = data.products;
       saveToLocalStorage();
       createMainCategoryButtons();
-      updateProductList();
+      updateProductList(); 
+    })
+    .catch((err) => {
+      console.error("Fel vid hämtning:", err);
+      productsContainer.innerHTML = `<p class="error-message">Kunde inte hämta produkterna just nu. Försök igen senare.</p>`;
     });
 }
 
