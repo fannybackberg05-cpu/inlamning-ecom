@@ -187,7 +187,7 @@ function showProducts(productsList) {
         <div class="product-card add-new-card" onclick="openCreateMode()" style="display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px dashed #ccc; background: #fafafa;">
             <div style="text-align: center;">
                 <span style="font-size: 50px; color: #888; line-height: 1;">+</span>
-                <p style="margin-top: 10px; color: #666; font-weight: bold;">Skapa ny produkt</p>
+                <p style="margin-top: 10px; color: #666; font-weight: bold;">Add product</p>
             </div>
         </div>
     `;
